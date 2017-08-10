@@ -31,14 +31,16 @@ public class OI {
     public JoystickButton yButton;
     public JoystickButton rightBumber;
     public JoystickButton leftButton;
-    public Joystick bobController;
+    public BobController driverController;
+    public BobController operatorController;
 
 
     public OI() {
 
-        bobController = new Joystick(0);
+        driverController = new BobController(0);
+        operatorController = new BobController(1);
         
-        leftButton = new JoystickButton(bobController, 5);
+       /* leftButton = new JoystickButton(bobController, 5);
         leftButton.whileHeld(new Command6());
         rightBumber = new JoystickButton(bobController, 6);
         rightBumber.whileHeld(new Command5());
@@ -50,6 +52,9 @@ public class OI {
         bButton.whileHeld(new Command2());
         aButton = new JoystickButton(bobController, 1);
         aButton.whileHeld(new Command1());
+	*/
+        
+        
 
 
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());
@@ -62,9 +67,9 @@ public class OI {
 
     }
 
-    public Joystick getBobController() {
-        return bobController;
-    }
+   // public Joystick getBobController() {
+   //     return bobController;
+   // }
 
 
 }

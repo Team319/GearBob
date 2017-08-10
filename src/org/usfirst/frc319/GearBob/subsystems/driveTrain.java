@@ -19,6 +19,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -38,6 +39,8 @@ public class driveTrain extends Subsystem {
     private final CANTalon right7 = RobotMap.drivetrainright7;
     
     private final RobotDrive joystickDrive = RobotMap.driveTrainJoystickDrive;
+    
+    private final PowerDistributionPanel pdp = RobotMap.pdp;
    
     public final int DRIVE_PROFILE = 0;
     
@@ -61,11 +64,11 @@ public class driveTrain extends Subsystem {
     	rightLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
     	rightLead.configEncoderCodesPerRev(1024);
     	
-    	leftLead.configNominalOutputVoltage(+11.0, -11.0);
-    	leftLead.configPeakOutputVoltage(+11.0, -11.0);
+    	leftLead.configNominalOutputVoltage(+12.0, -12.0);
+    	leftLead.configPeakOutputVoltage(+12.0, -12.0);
 
-    	rightLead.configNominalOutputVoltage(+11.0, -11.0);
-    	rightLead.configPeakOutputVoltage(+11.0, -11.0);
+    	rightLead.configNominalOutputVoltage(+12.0, -12.0);
+    	rightLead.configPeakOutputVoltage(+12.0, -12.0);
 
     	double pDrive = 0.00;
     	double fGain = 0.00;
@@ -117,6 +120,61 @@ public class driveTrain extends Subsystem {
        return Robot.driveTrain.right7.getOutputCurrent();
     }
     
- 
+    public double getLeftLeadVoltage (){
+        return Robot.driveTrain.leftLead.getOutputVoltage();
+    }
+    public double getLeft1Voltage (){
+        return Robot.driveTrain.left1.getOutputVoltage();
+    }
+    public double getLeft2Voltage (){
+        return Robot.driveTrain.left2.getOutputVoltage();
+    }
+    public double getLeft3Voltage (){
+       return Robot.driveTrain.left3.getOutputVoltage();
+    }
+    public double getRightLeadVoltage (){
+       return Robot.driveTrain.rightLead.getOutputVoltage();
+    }
+    public double getRight5Voltage (){
+       return Robot.driveTrain.right5.getOutputVoltage();
+    }
+    public double getRight6Voltage (){
+       return Robot.driveTrain.right6.getOutputVoltage();
+    }
+    public double getRight7Voltage (){
+       return Robot.driveTrain.right7.getOutputVoltage();
+    }
+    
+    public double getpdp0Current(){
+    	return pdp.getCurrent(0);
+    }
+    public double getpdp1Current(){
+    	return pdp.getCurrent(1);
+    }
+    public double getpdp2Current(){
+    	return pdp.getCurrent(2);
+    }
+    public double getpdp3Current(){
+    	return pdp.getCurrent(3);
+    }
+    public double getpdp12Current(){
+    	return pdp.getCurrent(12);
+    }
+    public double getpdp13Current(){
+    	return pdp.getCurrent(13);
+    }
+    public double getpdp14Current(){
+    	return pdp.getCurrent(14);
+    }
+    public double getpdp15Current(){
+    	return pdp.getCurrent(15);
+    }
+	public double getRightDriveVelocity() {
+		return rightLead.getSpeed();
+	}
+
+	public double getLeftDriveVelocity() {
+		return leftLead.getSpeed();
+	}
 }
 

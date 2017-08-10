@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static driveTrain driveTrain;
     public static GearCollector gearCollector;
-
+    public static Logger logger; // initial attempt at creating log file
     
     /**
      * This function is run when the robot is first started up and should be
@@ -44,6 +44,8 @@ public class Robot extends IterativeRobot {
     RobotMap.init();
         driveTrain = new driveTrain();
         gearCollector = new GearCollector();
+        
+        logger = Logger.getInstance();
 
        oi = new OI();
 
@@ -57,12 +59,13 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
+    	Robot.logger.close(); // initial attempt at creating log
 
-
-
-    	
-    	public void disabledPeriodic() {
+    }	
+    public void disabledPeriodic() {
         Scheduler.getInstance().run();
+        
+        
     }
 
     public void autonomousInit() {
@@ -78,6 +81,8 @@ public class Robot extends IterativeRobot {
 
     public void teleopInit() {
         if (autonomousCommand != null) autonomousCommand.cancel();
+        
+        Robot.logger.openFile(); // initial attempt at creating log file
     }
 
     /**
@@ -86,15 +91,37 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         /////////////////////drivetrain//////////////////////////////////////////////
-        SmartDashboard.putNumber("getleftleadcurrent", Robot.driveTrain.getLeftLeadCurrent());
-        SmartDashboard.putNumber("getleft1current", Robot.driveTrain.getLeft1Current());
-        SmartDashboard.putNumber("getleft2current", Robot.driveTrain.getLeft2Current());
-        SmartDashboard.putNumber("getleft3current", Robot.driveTrain.getLeft3Current());
-        SmartDashboard.putNumber("getrightleadcurrent", Robot.driveTrain.getRightLeadCurrent());
-        SmartDashboard.putNumber("getright1current", Robot.driveTrain.getRight5Current());
-        SmartDashboard.putNumber("getright2current", Robot.driveTrain.getRight6Current());
-        SmartDashboard.putNumber("getright3current", Robot.driveTrain.getRight7Current());
+        SmartDashboard.putNumber("leftleadcurrent", Robot.driveTrain.getLeftLeadCurrent());
+        SmartDashboard.putNumber("left1current", Robot.driveTrain.getLeft1Current());
+        SmartDashboard.putNumber("left2current", Robot.driveTrain.getLeft2Current());
+        SmartDashboard.putNumber("left3current", Robot.driveTrain.getLeft3Current());
+        SmartDashboard.putNumber("rightleadcurrent", Robot.driveTrain.getRightLeadCurrent());
+        SmartDashboard.putNumber("right5current", Robot.driveTrain.getRight5Current());
+        SmartDashboard.putNumber("right6current", Robot.driveTrain.getRight6Current());
+        SmartDashboard.putNumber("right7current", Robot.driveTrain.getRight7Current());
+       
+        SmartDashboard.putNumber("leftLeadVoltage", Robot.driveTrain.getLeftLeadVoltage());
+        SmartDashboard.putNumber("left1Voltage", Robot.driveTrain.getLeft1Voltage());   
+        SmartDashboard.putNumber("left2Voltage", Robot.driveTrain.getLeft2Voltage());
+        SmartDashboard.putNumber("left3Voltage", Robot.driveTrain.getLeft3Voltage());
+        SmartDashboard.putNumber("rightLeadVoltage", Robot.driveTrain.getRightLeadVoltage());
+        SmartDashboard.putNumber("right5Voltage", Robot.driveTrain.getRight5Voltage());
+        SmartDashboard.putNumber("right6Voltage", Robot.driveTrain.getRight6Voltage());
+        SmartDashboard.putNumber("right7Voltage", Robot.driveTrain.getRight7Voltage());
         
+        SmartDashboard.putNumber("pdp0", Robot.driveTrain.getpdp0Current());
+        SmartDashboard.putNumber("pdp1", Robot.driveTrain.getpdp1Current());
+        SmartDashboard.putNumber("pdp2", Robot.driveTrain.getpdp2Current());
+        SmartDashboard.putNumber("pdp3", Robot.driveTrain.getpdp3Current());
+        SmartDashboard.putNumber("pdp12", Robot.driveTrain.getpdp12Current());
+        SmartDashboard.putNumber("pdp13", Robot.driveTrain.getpdp13Current());
+        SmartDashboard.putNumber("pdp14", Robot.driveTrain.getpdp14Current());
+        SmartDashboard.putNumber("pdp15", Robot.driveTrain.getpdp15Current());
+        
+        SmartDashboard.putNumber("leftStickY", Robot.oi.driverController.getLeftStickY());
+        SmartDashboard.putNumber("rightStickX", Robot.oi.driverController.getRightStickX());
+        
+        Robot.logger.logAll(); // initial attempt at creating log
     }
 
     /**

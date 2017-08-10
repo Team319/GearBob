@@ -13,6 +13,7 @@ package org.usfirst.frc319.GearBob.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc319.GearBob.BobController;
 import org.usfirst.frc319.GearBob.Robot;
 
 /**
@@ -34,8 +35,8 @@ public class JoystickDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double moveValue = Robot.oi.bobController.getLeftStickY();
-    	double rotateValue = Robot.oi.bobController.getRightStickX();
+    	double moveValue = Robot.oi.driverController.getLeftStickY();
+    	double rotateValue = Robot.oi.driverController.getRightStickX();
     	Robot.driveTrain.joystickDrive(-moveValue, rotateValue);
     }
 
