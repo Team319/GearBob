@@ -28,42 +28,49 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class RobotMap {
 	
     public static CANTalon drivetrainleftLead;
-    public static CANTalon drivetrainleft1;
-    public static CANTalon drivetrainleft2;
-    public static CANTalon drivetrainleft3;
+    public static CANTalon drivetrainleft7;
+    public static CANTalon drivetrainleft8;
+    public static CANTalon drivetrainleft9;
     public static CANTalon drivetrainrightLead;
-    public static CANTalon drivetrainright5;
-    public static CANTalon drivetrainright6;
-    public static CANTalon drivetrainright7;
+    public static CANTalon drivetrainright2;
+    public static CANTalon drivetrainright3;
+    public static CANTalon drivetrainright4;
+    public static CANTalon gearCollectorGearCollectorMotor;
+    public static CANTalon gearCollectorGearCollectorArm;
     public static RobotDrive driveTrainJoystickDrive;
     public static PowerDistributionPanel pdp;
     
 
     public static void init() {
         
-        drivetrainleftLead = new CANTalon(0);
+        drivetrainleftLead = new CANTalon(6);
         LiveWindow.addActuator("Drivetrain", "leftLead", drivetrainleftLead);
         
-        drivetrainleft1 = new CANTalon(1);
-        LiveWindow.addActuator("Drivetrain", "left1", drivetrainleft1);
+        drivetrainleft7 = new CANTalon(7);
+        LiveWindow.addActuator("Drivetrain", "left1", drivetrainleft7);
         
-        drivetrainleft2 = new CANTalon(2);
-        LiveWindow.addActuator("Drivetrain", "left2", drivetrainleft2);
+        drivetrainleft8 = new CANTalon(8);
+        LiveWindow.addActuator("Drivetrain", "left2", drivetrainleft8);
         
-        drivetrainleft3 = new CANTalon(3);
-        LiveWindow.addActuator("Drivetrain", "left3", drivetrainleft3);
+        drivetrainleft9 = new CANTalon(9);
+        LiveWindow.addActuator("Drivetrain", "left3", drivetrainleft9);
         
-        drivetrainrightLead = new CANTalon(4);
+        drivetrainrightLead = new CANTalon(1);
         LiveWindow.addActuator("Drivetrain", "rightLead", drivetrainrightLead);
         
-        drivetrainright5 = new CANTalon(5);
-        LiveWindow.addActuator("Drivetrain", "right5", drivetrainright5);
+        drivetrainright2 = new CANTalon(2);
+        LiveWindow.addActuator("Drivetrain", "right5", drivetrainright2);
         
-        drivetrainright6 = new CANTalon(6);
-        LiveWindow.addActuator("Drivetrain", "right6", drivetrainright6);
+        drivetrainright3 = new CANTalon(3);
+        LiveWindow.addActuator("Drivetrain", "right6", drivetrainright3);
         
-        drivetrainright7 = new CANTalon(7);
-        LiveWindow.addActuator("Drivetrain", "right7", drivetrainright7);
+        drivetrainright4 = new CANTalon(4);
+        LiveWindow.addActuator("Drivetrain", "right7", drivetrainright4);
+        
+        driveTrainJoystickDrive = new RobotDrive(drivetrainleftLead,  drivetrainrightLead);
+        
+        gearCollectorGearCollectorMotor = new CANTalon(4);//
+        gearCollectorGearCollectorArm = new CANTalon(10);//
         
         pdp = new PowerDistributionPanel(0);
 
