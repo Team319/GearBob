@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc319.GearBob.subsystems;
 
 import org.usfirst.frc319.GearBob.Robot;
@@ -23,168 +22,240 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-
 /**
  * 
  */
 public class driveTrain extends Subsystem {
 
-    private final CANTalon leftLead = RobotMap.drivetrainleftLead;
-    private final CANTalon left7 = RobotMap.drivetrainleft7;
-    private final CANTalon left8 = RobotMap.drivetrainleft8;
-    private final CANTalon left9 = RobotMap.drivetrainleft9;
-    private final CANTalon rightLead = RobotMap.drivetrainrightLead;
-    private final CANTalon right2 = RobotMap.drivetrainright2;
-    private final CANTalon right3 = RobotMap.drivetrainright3;
-    private final CANTalon right4 = RobotMap.drivetrainright4;
-    
-    private final RobotDrive joystickDrive = RobotMap.driveTrainJoystickDrive;
-    
-    private final PowerDistributionPanel pdp = RobotMap.pdp;
-   
-    public final int DRIVE_PROFILE = 0;
-    
-    StringBuilder _sb = new StringBuilder();
+	private final CANTalon leftLead = RobotMap.drivetrainleftLead;
+	private final CANTalon left7 = RobotMap.drivetrainleft7;
+	private final CANTalon left8 = RobotMap.drivetrainleft8;
+	private final CANTalon left9 = RobotMap.drivetrainleft9;
+	private final CANTalon rightLead = RobotMap.drivetrainrightLead;
+	private final CANTalon right2 = RobotMap.drivetrainright2;
+	private final CANTalon right3 = RobotMap.drivetrainright3;
+	private final CANTalon right4 = RobotMap.drivetrainright4;
+
+	private final RobotDrive joystickDrive = RobotMap.driveTrainJoystickDrive;
+
+	private final PowerDistributionPanel pdp = RobotMap.pdp;
+
+	public final int DRIVE_PROFILE = 0;
+
+	StringBuilder _sb = new StringBuilder();
 	int _loops = 0;
-    
-    public driveTrain(){
-    	
-    	leftLead.changeControlMode(TalonControlMode.PercentVbus);
-    	left7.changeControlMode(TalonControlMode.Follower);
-    	left7.set(leftLead.getDeviceID());
-    	left8.changeControlMode(TalonControlMode.Follower);
-    	left8.set(leftLead.getDeviceID());
-    	left9.changeControlMode(TalonControlMode.Follower);
-    	left9.set(leftLead.getDeviceID());
-    	leftLead.reverseSensor(true);
-    	leftLead.reverseOutput(true);
-    	leftLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	leftLead.configEncoderCodesPerRev(1024);
-    	
-    	rightLead.changeControlMode(TalonControlMode.PercentVbus);
-    	right2.changeControlMode(TalonControlMode.Follower);
-    	right2.set(rightLead.getDeviceID());
-    	right3.changeControlMode(TalonControlMode.Follower);
-    	right3.set(rightLead.getDeviceID());
-    	right4.changeControlMode(TalonControlMode.Follower);
-    	right4.set(rightLead.getDeviceID());
-    	rightLead.reverseOutput(false);
-    	rightLead.reverseOutput(false);
-    	rightLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	rightLead.configEncoderCodesPerRev(1024);
-    	
-    	leftLead.configNominalOutputVoltage(+12.0, -12.0);
-    	leftLead.configPeakOutputVoltage(+12.0, -12.0);
-    	leftLead.EnableCurrentLimit(false);
-    	leftLead.setCurrentLimit(1);
 
-    	rightLead.configNominalOutputVoltage(+12.0, -12.0);
-    	rightLead.configPeakOutputVoltage(+12.0, -12.0);
-    	rightLead.EnableCurrentLimit(false);
-    	rightLead.setCurrentLimit(1);
+	public driveTrain() {
 
-    	rightLead.setVoltageRampRate(24);
-    	leftLead.setVoltageRampRate(24);
-    	
-    	double pDrive = 0.6;
-    	double fGain = 0.254;
-    	double dDrive = 0.00; 
-    	double closedLoopRampRate = 0.00;
-    	
-    	rightLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
-    	leftLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
-    	
-    //	rightLead.EnableCurrentLimit(true);//Enables current limit...
-    //	rightLead.setCurrentLimit(50);//do not exceed this amount of current...need to figure out actual number/this was a guess (in amps) Joshua 6/3/17
-    	
-    //	leftLead.EnableCurrentLimit(true);
-    //	leftLead.setCurrentLimit(50);
-    }
+		leftLead.changeControlMode(TalonControlMode.PercentVbus);
+		left7.changeControlMode(TalonControlMode.Follower);
+		left7.set(leftLead.getDeviceID());
+		left8.changeControlMode(TalonControlMode.Follower);
+		left8.set(leftLead.getDeviceID());
+		left9.changeControlMode(TalonControlMode.Follower);
+		left9.set(leftLead.getDeviceID());
+		leftLead.reverseSensor(true);
+		leftLead.reverseOutput(true);
+		leftLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		leftLead.configEncoderCodesPerRev(1024);
 
-   
-    public void initDefaultCommand() {
-    
-    	//setDefaultCommand(new JoystickDrive());
-    	setDefaultCommand(new RightDrivetrainPIDTest());
-    }
-    
-    public void joystickDrive(double moveValue, double rotateValue) {
+		rightLead.changeControlMode(TalonControlMode.PercentVbus);
+		right2.changeControlMode(TalonControlMode.Follower);
+		right2.set(rightLead.getDeviceID());
+		right3.changeControlMode(TalonControlMode.Follower);
+		right3.set(rightLead.getDeviceID());
+		right4.changeControlMode(TalonControlMode.Follower);
+		right4.set(rightLead.getDeviceID());
+		rightLead.reverseOutput(false);
+		rightLead.reverseOutput(false);
+		rightLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		rightLead.configEncoderCodesPerRev(1024);
+
+		leftLead.configNominalOutputVoltage(+12.0, -12.0);
+		leftLead.configPeakOutputVoltage(+12.0, -12.0);
+		leftLead.EnableCurrentLimit(false);
+		leftLead.setCurrentLimit(1);
+
+		rightLead.configNominalOutputVoltage(+12.0, -12.0);
+		rightLead.configPeakOutputVoltage(+12.0, -12.0);
+		rightLead.EnableCurrentLimit(false);
+		rightLead.setCurrentLimit(1);
+
+		rightLead.setVoltageRampRate(24);
+		leftLead.setVoltageRampRate(24);
+
+		double pDrive = 0.35;
+		double fGain = 0.254;
+		double dDrive = 0.00;
+		double closedLoopRampRate = 0.00;
+
+		rightLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
+		leftLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
+
+		// rightLead.EnableCurrentLimit(true);//Enables current limit...
+		// rightLead.setCurrentLimit(50);//do not exceed this amount of
+		// current...need to figure out actual number/this was a guess (in amps)
+		// Joshua 6/3/17
+
+		// leftLead.EnableCurrentLimit(true);
+		// leftLead.setCurrentLimit(50);
+	}
+
+	public void initDefaultCommand() {
+
+		// setDefaultCommand(new RightDrivetrainPIDTest());
+		setDefaultCommand(new JoystickDrive());
+	}
+
+	public void joystickDrive(double moveValue, double rotateValue) {
 		joystickDrive.arcadeDrive(moveValue, rotateValue, true);
 	}
-    public double getLeftLeadCurrent (){
-    return Robot.driveTrain.leftLead.getOutputCurrent();
-    }
-    public double getLeft1Current (){
-        return Robot.driveTrain.left7.getOutputCurrent();
-    }
-    public double getLeft2Current (){
-        return Robot.driveTrain.left8.getOutputCurrent();
-    }
-    public double getLeft3Current (){
-       return Robot.driveTrain.left9.getOutputCurrent();
-    }
-    public double getRightLeadCurrent (){
-       return Robot.driveTrain.rightLead.getOutputCurrent();
-    }
-    public double getRight5Current (){
-       return Robot.driveTrain.right2.getOutputCurrent();
-    }
-    public double getRight6Current (){
-       return Robot.driveTrain.right3.getOutputCurrent();
-    }
-    public double getRight7Current (){
-       return Robot.driveTrain.right4.getOutputCurrent();
-    }
-    
-    public double getLeftLeadVoltage (){
-        return Robot.driveTrain.leftLead.getOutputVoltage();
-    }
-    public double getLeft1Voltage (){
-        return Robot.driveTrain.left7.getOutputVoltage();
-    }
-    public double getLeft2Voltage (){
-        return Robot.driveTrain.left8.getOutputVoltage();
-    }
-    public double getLeft3Voltage (){
-       return Robot.driveTrain.left9.getOutputVoltage();
-    }
-    public double getRightLeadVoltage (){
-       return Robot.driveTrain.rightLead.getOutputVoltage();
-    }
-    public double getRight5Voltage (){
-       return Robot.driveTrain.right2.getOutputVoltage();
-    }
-    public double getRight6Voltage (){
-       return Robot.driveTrain.right3.getOutputVoltage();
-    }
-    public double getRight7Voltage (){
-       return Robot.driveTrain.right4.getOutputVoltage();
-    }
-    
-    public double getpdp0Current(){
-    	return pdp.getCurrent(0);
-    }
-    public double getpdp1Current(){
-    	return pdp.getCurrent(1);
-    }
-    public double getpdp2Current(){
-    	return pdp.getCurrent(2);
-    }
-    public double getpdp3Current(){
-    	return pdp.getCurrent(3);
-    }
-    public double getpdp12Current(){
-    	return pdp.getCurrent(12);
-    }
-    public double getpdp13Current(){
-    	return pdp.getCurrent(13);
-    }
-    public double getpdp14Current(){
-    	return pdp.getCurrent(14);
-    }
-    public double getpdp15Current(){
-    	return pdp.getCurrent(15);
-    }
+	
+	//get the output current for the given talon.  if the voltage is negative, make the current negative
+	public double getTalonDirectionalCurrent(CANTalon talon){
+		double voltage = talon.getOutputVoltage();
+		if (voltage >= 0){
+			return talon.getOutputCurrent();
+		}
+		else{
+			return -talon.getOutputCurrent();
+		}
+	}
+	
+	public double getTalonVoltage(CANTalon talon){
+		return talon.getOutputVoltage();
+	}
+	
+	public CANTalon getLeftLeadTalon(){
+		return this.leftLead;
+	}
+	
+	public CANTalon getLeft1Talon(){
+		return this.left7;
+	}
+	
+	public CANTalon getLeft2Talon(){
+		return this.left8;
+	}
+	
+	public CANTalon getLeft3Talon(){
+		return this.left9;
+	}
+	
+	public CANTalon getRightLeadTalon(){
+		return this.rightLead;
+	}
+	
+	public CANTalon getRight1Talon(){
+		return this.right2;
+	}
+	
+	public CANTalon getRight2Talon(){
+		return this.right3;
+	}
+	
+	public CANTalon getRight3Talon(){
+		return this.right4;
+	}
+
+	
+	public double getLeftLeadCurrent() {
+		return Robot.driveTrain.leftLead.getOutputCurrent();
+	}
+
+	public double getLeft1Current() {
+		return Robot.driveTrain.left7.getOutputCurrent();
+	}
+
+	public double getLeft2Current() {
+		return Robot.driveTrain.left8.getOutputCurrent();
+	}
+
+	public double getLeft3Current() {
+		return Robot.driveTrain.left9.getOutputCurrent();
+	}
+
+	public double getRightLeadCurrent() {
+		return Robot.driveTrain.rightLead.getOutputCurrent();
+	}
+
+	public double getRight5Current() {
+		return Robot.driveTrain.right2.getOutputCurrent();
+	}
+
+	public double getRight6Current() {
+		return Robot.driveTrain.right3.getOutputCurrent();
+	}
+
+	public double getRight7Current() {
+		return Robot.driveTrain.right4.getOutputCurrent();
+	}
+	
+
+	public double getLeftLeadVoltage() {
+		return Robot.driveTrain.leftLead.getOutputVoltage();
+	}
+
+	public double getLeft1Voltage() {
+		return Robot.driveTrain.left7.getOutputVoltage();
+	}
+
+	public double getLeft2Voltage() {
+		return Robot.driveTrain.left8.getOutputVoltage();
+	}
+
+	public double getLeft3Voltage() {
+		return Robot.driveTrain.left9.getOutputVoltage();
+	}
+
+	public double getRightLeadVoltage() {
+		return Robot.driveTrain.rightLead.getOutputVoltage();
+	}
+
+	public double getRight5Voltage() {
+		return Robot.driveTrain.right2.getOutputVoltage();
+	}
+
+	public double getRight6Voltage() {
+		return Robot.driveTrain.right3.getOutputVoltage();
+	}
+
+	public double getRight7Voltage() {
+		return Robot.driveTrain.right4.getOutputVoltage();
+	}
+
+	public double getpdp0Current() {
+		return pdp.getCurrent(0);
+	}
+
+	public double getpdp1Current() {
+		return pdp.getCurrent(1);
+	}
+
+	public double getpdp2Current() {
+		return pdp.getCurrent(2);
+	}
+
+	public double getpdp3Current() {
+		return pdp.getCurrent(3);
+	}
+
+	public double getpdp11Current() {
+		return pdp.getCurrent(11);
+	}
+
+	public double getpdp12Current() {
+		return pdp.getCurrent(12);
+	}
+
+	public double getpdp13Current() {
+		return pdp.getCurrent(13);
+	}
+
+	public double getpdp14Current() {
+		return pdp.getCurrent(14);
+	}
+
 	public double getRightDriveVelocity() {
 		return rightLead.getSpeed();
 	}
@@ -192,6 +263,27 @@ public class driveTrain extends Subsystem {
 	public double getLeftDriveVelocity() {
 		return leftLead.getSpeed();
 	}
+
+	public void driveStraight(double speed) {
+		Robot.driveTrain.joystickDrive(speed, 0.0);
+	}
+
+	public double getRightDistance() {
+		return rightLead.getPosition();
+	}
+
+	public boolean reachedDistance(double distance) {
+		if (rightLead.getPosition() >= distance) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public double getRightDrivePosition() {
+		return Robot.driveTrain.rightLead.getPosition();
+	}
+
 	public void rightDrivetrainPIDTestMode() {
 		// SmartDashboard.putInt("motorspeed", rightDriveLead.getEncVelocity());
 
@@ -206,10 +298,11 @@ public class driveTrain extends Subsystem {
 
 		if (Robot.oi.driverController.getRawButton(1)) {
 			/* Speed mode */
-			double targetSpeed = 413;// Robot.oi.driverController.getRawAxis(1)//was 468
+			double targetSpeed = 413;// Robot.oi.driverController.getRawAxis(1)//was
+										// 468
 										// * 1015;
 			rightLead.changeControlMode(TalonControlMode.Speed);
-			//rightLead.setProfile(1); // 0 = high gear, 1 = low gear
+			// rightLead.setProfile(1); // 0 = high gear, 1 = low gear
 			rightLead.set(targetSpeed);
 			// _sb.append(_talon.getControlMode() );
 
@@ -293,4 +386,3 @@ public class driveTrain extends Subsystem {
 		_sb.setLength(0);
 	}
 }
-
