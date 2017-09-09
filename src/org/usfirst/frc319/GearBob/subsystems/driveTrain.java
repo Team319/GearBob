@@ -64,7 +64,7 @@ public class driveTrain extends Subsystem {
     	rightLead.changeControlMode(TalonControlMode.PercentVbus);
     	right2.changeControlMode(TalonControlMode.Follower);
     	right2.set(rightLead.getDeviceID());
-    	right3.changeControlMode(TalonControlMode.Follower);vv 
+    	right3.changeControlMode(TalonControlMode.Follower);
     	right3.set(rightLead.getDeviceID());
     	right4.changeControlMode(TalonControlMode.Follower);
     	right4.set(rightLead.getDeviceID());
@@ -75,30 +75,37 @@ public class driveTrain extends Subsystem {
     	
     	leftLead.configNominalOutputVoltage(+12.0, -12.0);
     	leftLead.configPeakOutputVoltage(+12.0, -12.0);
+    	leftLead.EnableCurrentLimit(false);
+    	leftLead.setCurrentLimit(1);
 
     	rightLead.configNominalOutputVoltage(+12.0, -12.0);
     	rightLead.configPeakOutputVoltage(+12.0, -12.0);
+    	rightLead.EnableCurrentLimit(false);
+    	rightLead.setCurrentLimit(1);
 
-    	double pDrive = 0.00;
-    	double fGain = 0.00;
+    	rightLead.setVoltageRampRate(24);
+    	leftLead.setVoltageRampRate(24);
+    	
+    	double pDrive = 0.6;
+    	double fGain = 0.254;
     	double dDrive = 0.00; 
     	double closedLoopRampRate = 0.00;
     	
     	rightLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
     	leftLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
     	
-    	rightLead.EnableCurrentLimit(true);//Enables current limit...
-    	rightLead.setCurrentLimit(50);//do not exceed this amount of current...need to figure out actual number/this was a guess (in amps) Joshua 6/3/17
+    //	rightLead.EnableCurrentLimit(true);//Enables current limit...
+    //	rightLead.setCurrentLimit(50);//do not exceed this amount of current...need to figure out actual number/this was a guess (in amps) Joshua 6/3/17
     	
-    	leftLead.EnableCurrentLimit(true);
-    	leftLead.setCurrentLimit(50);
+    //	leftLead.EnableCurrentLimit(true);
+    //	leftLead.setCurrentLimit(50);
     }
 
    
     public void initDefaultCommand() {
     
-    	setDefaultCommand(new JoystickDrive());
-    
+    	//setDefaultCommand(new JoystickDrive());
+    	setDefaultCommand(new RightDrivetrainPIDTest());
     }
     
     public void joystickDrive(double moveValue, double rotateValue) {
@@ -199,10 +206,10 @@ public class driveTrain extends Subsystem {
 
 		if (Robot.oi.driverController.getRawButton(1)) {
 			/* Speed mode */
-			double targetSpeed = 468;// Robot.oi.driverController.getRawAxis(1)
+			double targetSpeed = 413;// Robot.oi.driverController.getRawAxis(1)//was 468
 										// * 1015;
 			rightLead.changeControlMode(TalonControlMode.Speed);
-			rightLead.setProfile(1); // 0 = high gear, 1 = low gear
+			//rightLead.setProfile(1); // 0 = high gear, 1 = low gear
 			rightLead.set(targetSpeed);
 			// _sb.append(_talon.getControlMode() );
 

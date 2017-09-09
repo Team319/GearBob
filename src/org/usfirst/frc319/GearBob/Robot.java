@@ -34,6 +34,7 @@ public class Robot extends IterativeRobot {
     public static OI oi;
     public static driveTrain driveTrain;
     public static GearCollector gearCollector;
+    public static rollervator rollervator;
     public static Logger logger; // initial attempt at creating log file
     
     /**
@@ -44,6 +45,7 @@ public class Robot extends IterativeRobot {
     RobotMap.init();
         driveTrain = new driveTrain();
         gearCollector = new GearCollector();
+        rollervator = new rollervator();
         
         logger = Logger.getInstance();
 
@@ -65,7 +67,7 @@ public class Robot extends IterativeRobot {
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
         
-        
+        SmartDashboard.putNumber("gearCollectorArmAngle", Robot.gearCollector.gearArmAngle());
     }
 
     public void autonomousInit() {
@@ -120,6 +122,7 @@ public class Robot extends IterativeRobot {
         
         SmartDashboard.putNumber("leftStickY", Robot.oi.driverController.getLeftStickY());
         SmartDashboard.putNumber("rightStickX", Robot.oi.driverController.getRightStickX());
+        SmartDashboard.putNumber("gearCollectorArmAngle", Robot.gearCollector.gearArmAngle());
         
         Robot.logger.logAll(); // initial attempt at creating log
     }

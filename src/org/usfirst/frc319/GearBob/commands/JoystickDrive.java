@@ -37,7 +37,7 @@ public class JoystickDrive extends Command {
     protected void execute() {
     	double moveValue = Robot.oi.driverController.getLeftStickY();
     	double rotateValue = Robot.oi.driverController.getRightStickX();
-    	Robot.driveTrain.joystickDrive(-moveValue, rotateValue);
+    	Robot.driveTrain.joystickDrive(-moveValue,-rotateValue);
     }
 
     // Make this return true when this Command no longer needs to run execute()

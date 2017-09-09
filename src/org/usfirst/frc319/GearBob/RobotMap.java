@@ -37,12 +37,14 @@ public class RobotMap {
     public static CANTalon drivetrainright4;
     public static CANTalon gearCollectorGearCollectorMotor;
     public static CANTalon gearCollectorGearCollectorArm;
+    public static CANTalon climberclimberLead;
+    public static CANTalon climberclimberFollow;
     public static RobotDrive driveTrainJoystickDrive;
     public static PowerDistributionPanel pdp;
     
 
     public static void init() {
-        
+        //----------------leftdrive---------------------------//
         drivetrainleftLead = new CANTalon(6);
         LiveWindow.addActuator("Drivetrain", "leftLead", drivetrainleftLead);
         
@@ -54,7 +56,7 @@ public class RobotMap {
         
         drivetrainleft9 = new CANTalon(9);
         LiveWindow.addActuator("Drivetrain", "left3", drivetrainleft9);
-        
+        //-----------------rightdrive---------------------//
         drivetrainrightLead = new CANTalon(1);
         LiveWindow.addActuator("Drivetrain", "rightLead", drivetrainrightLead);
         
@@ -66,10 +68,14 @@ public class RobotMap {
         
         drivetrainright4 = new CANTalon(4);
         LiveWindow.addActuator("Drivetrain", "right7", drivetrainright4);
+        //-----------------------climber------------------------//
+        climberclimberLead = new CANTalon(5);
+     
+        climberclimberFollow = new CANTalon(11);
         
         driveTrainJoystickDrive = new RobotDrive(drivetrainleftLead,  drivetrainrightLead);
         
-        gearCollectorGearCollectorMotor = new CANTalon(4);//
+        gearCollectorGearCollectorMotor = new CANTalon(0);//
         gearCollectorGearCollectorArm = new CANTalon(10);//
         
         pdp = new PowerDistributionPanel(0);
