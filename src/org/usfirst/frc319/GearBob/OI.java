@@ -54,10 +54,10 @@ public class OI {
         aButton.whileHeld(new Command1());
 	*/
         
-        driverController.rightTriggerButton.whenPressed(new AutoDepositGear());
-        driverController.leftTriggerButton.whenPressed(new AutomatedCollectGearAndLift());
-        driverController.yButton.whenPressed(new RetractCollectorThenStopCollect());
-        driverController.leftBumper.whenPressed(new AutomatedRollervatorClimb());
+       // driverController.rightTriggerButton.whenPressed(new AutoDepositGear());
+       // driverController.leftTriggerButton.whenPressed(new AutomatedCollectGearAndLift());
+       // driverController.yButton.whenPressed(new RetractCollectorThenStopCollect());
+      //  driverController.leftBumper.whenPressed(new AutomatedRollervatorClimb());
       //  driverController.bButton.whenPressed(new ClimberStop());
 
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());

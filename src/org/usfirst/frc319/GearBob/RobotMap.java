@@ -45,28 +45,28 @@ public class RobotMap {
 
     public static void init() {
         //----------------leftdrive---------------------------//
-        drivetrainleftLead = new CANTalon(6);
+        drivetrainleftLead = new CANTalon(1);
         LiveWindow.addActuator("Drivetrain", "leftLead", drivetrainleftLead);
         
-        drivetrainleft7 = new CANTalon(7);
+        drivetrainleft7 = new CANTalon(2);
         LiveWindow.addActuator("Drivetrain", "left1", drivetrainleft7);
         
-        drivetrainleft8 = new CANTalon(8);
+        drivetrainleft8 = new CANTalon(3);
         LiveWindow.addActuator("Drivetrain", "left2", drivetrainleft8);
         
-        drivetrainleft9 = new CANTalon(9);
+        drivetrainleft9 = new CANTalon(4);
         LiveWindow.addActuator("Drivetrain", "left3", drivetrainleft9);
         //-----------------rightdrive---------------------//
-        drivetrainrightLead = new CANTalon(1);
+        drivetrainrightLead = new CANTalon(6);
         LiveWindow.addActuator("Drivetrain", "rightLead", drivetrainrightLead);
         
-        drivetrainright2 = new CANTalon(2);
+        drivetrainright2 = new CANTalon(7);
         LiveWindow.addActuator("Drivetrain", "right5", drivetrainright2);
         
-        drivetrainright3 = new CANTalon(3);
+        drivetrainright3 = new CANTalon(8);
         LiveWindow.addActuator("Drivetrain", "right6", drivetrainright3);
         
-        drivetrainright4 = new CANTalon(4);
+        drivetrainright4 = new CANTalon(9);
         LiveWindow.addActuator("Drivetrain", "right7", drivetrainright4);
         //-----------------------climber------------------------//
         climberclimberLead = new CANTalon(5);
@@ -74,6 +74,12 @@ public class RobotMap {
         climberclimberFollow = new CANTalon(11);
         
         driveTrainJoystickDrive = new RobotDrive(drivetrainleftLead,  drivetrainrightLead);
+       
+        driveTrainJoystickDrive.setSafetyEnabled(false);//changed from true for velocity control testing 2/10/17
+        driveTrainJoystickDrive.setExpiration(0.1);
+        driveTrainJoystickDrive.setSensitivity(0.5);
+        driveTrainJoystickDrive.setMaxOutput(1.0);
+        
         
         gearCollectorGearCollectorMotor = new CANTalon(0);//
         gearCollectorGearCollectorArm = new CANTalon(10);//

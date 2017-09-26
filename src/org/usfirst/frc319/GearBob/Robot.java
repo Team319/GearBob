@@ -126,7 +126,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("rightStickX", Robot.oi.driverController.getRightStickX());
         SmartDashboard.putNumber("gearCollectorArmAngle", Robot.gearCollector.gearArmAngle());
         
-        SmartDashboard.putNumber("Right Drive Position", Robot.driveTrain.getRightDrivePosition());
+        SmartDashboard.putNumber("Right Drive vel", Robot.driveTrain.getRightDriveVelocity());
         
         Robot.logger.logAll(); // initial attempt at creating log
     }

@@ -41,7 +41,7 @@ public class driveTrain extends Subsystem {
 
 	private final PowerDistributionPanel pdp = RobotMap.pdp;
 
-	public final int DRIVE_PROFILE = 0;
+	//public final int DRIVE_PROFILE = 0;
 
 	StringBuilder _sb = new StringBuilder();
 	int _loops = 0;
@@ -55,8 +55,8 @@ public class driveTrain extends Subsystem {
 		left8.set(leftLead.getDeviceID());
 		left9.changeControlMode(TalonControlMode.Follower);
 		left9.set(leftLead.getDeviceID());
-		leftLead.reverseSensor(true);
-		leftLead.reverseOutput(true);
+		leftLead.reverseSensor(false);
+		leftLead.reverseOutput(false);
 		leftLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		leftLead.configEncoderCodesPerRev(1024);
 
@@ -68,30 +68,30 @@ public class driveTrain extends Subsystem {
 		right4.changeControlMode(TalonControlMode.Follower);
 		right4.set(rightLead.getDeviceID());
 		rightLead.reverseOutput(false);
-		rightLead.reverseOutput(false);
+		rightLead.reverseSensor(false);
 		rightLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		rightLead.configEncoderCodesPerRev(1024);
 
 		leftLead.configNominalOutputVoltage(+12.0, -12.0);
 		leftLead.configPeakOutputVoltage(+12.0, -12.0);
 		leftLead.EnableCurrentLimit(false);
-		leftLead.setCurrentLimit(1);
+		//leftLead.setCurrentLimit(1);
 
 		rightLead.configNominalOutputVoltage(+12.0, -12.0);
 		rightLead.configPeakOutputVoltage(+12.0, -12.0);
 		rightLead.EnableCurrentLimit(false);
-		rightLead.setCurrentLimit(1);
+		//rightLead.setCurrentLimit(1);
 
 		rightLead.setVoltageRampRate(24);
 		leftLead.setVoltageRampRate(24);
 
-		double pDrive = 0.35;//.6
-		double fGain = 0.254;
-		double dDrive = 0.00;
+		double pDrive = 0.6;//.6
+		double fGain = 0.23;
+		double dDrive = 10.00;
 		double closedLoopRampRate = 0.00;
 
-		rightLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
-		leftLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
+		rightLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate,0);
+		leftLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, 0);
 
 		// rightLead.EnableCurrentLimit(true);//Enables current limit...
 		// rightLead.setCurrentLimit(50);//do not exceed this amount of
@@ -104,7 +104,7 @@ public class driveTrain extends Subsystem {
 
 	public void initDefaultCommand() {
 
-		 setDefaultCommand(new RightDrivetrainPIDTest());
+		 setDefaultCommand(new LeftDrivetrainPIDTest());
 		//setDefaultCommand(new JoystickDrive());
 	}
 
@@ -303,7 +303,7 @@ public class driveTrain extends Subsystem {
 										// 468
 										// * 1015;
 			rightLead.changeControlMode(TalonControlMode.Speed);
-			// rightLead.setProfile(1); // 0 = high gear, 1 = low gear
+			 rightLead.setProfile(0); // 0 = high gear, 1 = low gear
 			rightLead.set(targetSpeed);
 			// _sb.append(_talon.getControlMode() );
 
@@ -350,10 +350,9 @@ public class driveTrain extends Subsystem {
 
 		if (Robot.oi.driverController.getRawButton(1)) {
 			/* Speed mode */
-			double targetSpeed = Robot.oi.driverController.getRawAxis(1)
-					* 1015; /* ____ RPM in either direction */
+			double targetSpeed = 413; /* ____ RPM in either direction */
 			leftLead.changeControlMode(TalonControlMode.Speed);
-			leftLead.setProfile(1); // 0 = high gear, 1 = low gear
+			leftLead.setProfile(0); // 0 = high gear, 1 = low gear
 			leftLead.set(targetSpeed); /* 1500 RPM in either direction */
 			// _sb.append(_talon.getControlMode() );
 
