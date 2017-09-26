@@ -115,10 +115,11 @@ public class Logger {
 	        	
 
 	        	sb.append(String.format("%f,", Robot.driveTrain.getTalonDirectionalCurrent(Robot.driveTrain.getRightLeadTalon())));
-	        	sb.append(String.format("%f,", Robot.driveTrain.getTalonVoltage(Robot.driveTrain.getRight1Talon())));
-	        	sb.append(String.format("%f,", Robot.driveTrain.getTalonVoltage(Robot.driveTrain.getRight2Talon())));
-	        	sb.append(String.format("%f,", Robot.driveTrain.getTalonVoltage(Robot.driveTrain.getRight3Talon())));
-	        
+	        	sb.append(String.format("%f,", Robot.driveTrain.getTalonDirectionalCurrent(Robot.driveTrain.getRight1Talon())));
+	        	sb.append(String.format("%f,", Robot.driveTrain.getTalonDirectionalCurrent(Robot.driveTrain.getRight2Talon())));
+	        	sb.append(String.format("%f,", Robot.driveTrain.getTalonDirectionalCurrent(Robot.driveTrain.getRight3Talon())));
+	                                  //--/\---------fix all of these---------------/\--//
+	        	
 	        	sb.append(String.format("%f,", Robot.driveTrain.getRightLeadVoltage()));
 	        	sb.append(String.format("%f,", Robot.driveTrain.getRight5Voltage()));
 	        	sb.append(String.format("%f,", Robot.driveTrain.getRight6Voltage()));

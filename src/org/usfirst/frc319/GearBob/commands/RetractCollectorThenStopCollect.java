@@ -13,6 +13,8 @@ package org.usfirst.frc319.GearBob.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
+import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorArmGoToDepositGear;
+import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorStop;
 //import org.usfirst.frc319.SteamworksBob319.commands.BrakePadDeploy;
 //import org.usfirst.frc319.SteamworksBob319.commands.BrakePadRetract;
 //import org.usfirst.frc319.SteamworksBob319.commands.Rollervator.RollervatorGo;

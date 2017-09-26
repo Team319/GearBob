@@ -52,8 +52,8 @@ public class Robot extends IterativeRobot {
        oi = new OI();
 
      
-        autonomousCommand = new AutonomousCommand();
-
+        //autonomousCommand = new AutonomousCommand();
+       autonomousCommand = new BlueCenterGearAuto();
      }
 
     /**

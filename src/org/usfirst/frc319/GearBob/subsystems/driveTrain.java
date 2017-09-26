@@ -12,6 +12,7 @@ package org.usfirst.frc319.GearBob.subsystems;
 
 import org.usfirst.frc319.GearBob.Robot;
 import org.usfirst.frc319.GearBob.RobotMap;
+import org.usfirst.frc319.GearBob.Drivecommands.JoystickDrive;
 import org.usfirst.frc319.GearBob.commands.*;
 
 import com.ctre.CANTalon;
@@ -27,11 +28,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class driveTrain extends Subsystem {
 
-	private final CANTalon leftLead = RobotMap.drivetrainleftLead;
+	public final CANTalon leftLead = RobotMap.drivetrainleftLead;
 	private final CANTalon left7 = RobotMap.drivetrainleft7;
 	private final CANTalon left8 = RobotMap.drivetrainleft8;
 	private final CANTalon left9 = RobotMap.drivetrainleft9;
-	private final CANTalon rightLead = RobotMap.drivetrainrightLead;
+	public final CANTalon rightLead = RobotMap.drivetrainrightLead;
 	private final CANTalon right2 = RobotMap.drivetrainright2;
 	private final CANTalon right3 = RobotMap.drivetrainright3;
 	private final CANTalon right4 = RobotMap.drivetrainright4;
@@ -84,7 +85,7 @@ public class driveTrain extends Subsystem {
 		rightLead.setVoltageRampRate(24);
 		leftLead.setVoltageRampRate(24);
 
-		double pDrive = 0.35;
+		double pDrive = 0.35;//.6
 		double fGain = 0.254;
 		double dDrive = 0.00;
 		double closedLoopRampRate = 0.00;
@@ -103,8 +104,8 @@ public class driveTrain extends Subsystem {
 
 	public void initDefaultCommand() {
 
-		// setDefaultCommand(new RightDrivetrainPIDTest());
-		setDefaultCommand(new JoystickDrive());
+		 setDefaultCommand(new RightDrivetrainPIDTest());
+		//setDefaultCommand(new JoystickDrive());
 	}
 
 	public void joystickDrive(double moveValue, double rotateValue) {
