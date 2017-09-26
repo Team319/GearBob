@@ -87,7 +87,7 @@ public class driveTrain extends Subsystem {
 
 		double pDrive = 0.6;//.6
 		double fGain = 0.23;
-		double dDrive = 10.00;
+		double dDrive = 0.00;
 		double closedLoopRampRate = 0.00;
 
 		rightLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate,0);
