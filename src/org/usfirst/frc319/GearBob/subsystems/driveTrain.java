@@ -22,6 +22,7 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -29,11 +30,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class driveTrain extends Subsystem {
 
-    private final CANTalon leftLead = RobotMap.drivetrainleftLead;
+    public final CANTalon leftLead = RobotMap.drivetrainleftLead;
     private final CANTalon left7 = RobotMap.drivetrainleft7;
     private final CANTalon left8 = RobotMap.drivetrainleft8;
     private final CANTalon left9 = RobotMap.drivetrainleft9;
-    private final CANTalon rightLead = RobotMap.drivetrainrightLead;
+    public final CANTalon rightLead = RobotMap.drivetrainrightLead;
     private final CANTalon right2 = RobotMap.drivetrainright2;
     private final CANTalon right3 = RobotMap.drivetrainright3;
     private final CANTalon right4 = RobotMap.drivetrainright4;
@@ -59,7 +60,7 @@ public class driveTrain extends Subsystem {
     	leftLead.reverseSensor(true);
     	leftLead.reverseOutput(true);
     	leftLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-    	leftLead.configEncoderCodesPerRev(1024);
+    	//leftLead.configEncoderCodesPerRev(1024);
     	
     	rightLead.changeControlMode(TalonControlMode.PercentVbus);
     	right2.changeControlMode(TalonControlMode.Follower);
@@ -86,10 +87,13 @@ public class driveTrain extends Subsystem {
     	rightLead.setVoltageRampRate(24);
     	leftLead.setVoltageRampRate(24);
     	
-    	double pDrive = 0.6;
-    	double fGain = 0.254;
-    	double dDrive = 0.00; 
+    	
     	double closedLoopRampRate = 0.00;
+    	
+    	double pDrive = 0.1;
+        double fGain = 224; // Drivetrain /.036
+        double dDrive = 0.00;// .3 is good
+         
     	
     	rightLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
     	leftLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, DRIVE_PROFILE);
@@ -104,8 +108,9 @@ public class driveTrain extends Subsystem {
    
     public void initDefaultCommand() {
     
-    	//setDefaultCommand(new JoystickDrive());
-    	setDefaultCommand(new RightDrivetrainPIDTest());
+    	setDefaultCommand(new JoystickDrive());
+    	//setDefaultCommand(new RightDrivetrainPIDTest());
+    	//setDefaultCommand(new CombatMotorBias());
     }
     
     public void joystickDrive(double moveValue, double rotateValue) {
@@ -206,8 +211,8 @@ public class driveTrain extends Subsystem {
 
 		if (Robot.oi.driverController.getRawButton(1)) {
 			/* Speed mode */
-			double targetSpeed = 413;// Robot.oi.driverController.getRawAxis(1)//was 468
-										// * 1015;
+			double targetSpeed = Robot.oi.driverController.getRawAxis(1)//was 468
+										 * 413;
 			rightLead.changeControlMode(TalonControlMode.Speed);
 			//rightLead.setProfile(1); // 0 = high gear, 1 = low gear
 			rightLead.set(targetSpeed);
@@ -242,34 +247,36 @@ public class driveTrain extends Subsystem {
 		_sb.setLength(0);
 	}
 
-	public void leftDrivetrainPIDTestMode() {
+	
+	
+	//public void leftDrivetrainPIDTestMode() {
 		// SmartDashboard.putInt("motorspeed", leftDriveLead.getEncVelocity());
 
 		/* get gamepad axis */
-		double leftYstick = Robot.oi.driverController.getRawAxis(1);
-		double motorOutput = leftLead.getOutputVoltage() / leftLead.getBusVoltage();
+		//double leftYstick = Robot.oi.driverController.getRawAxis(1);
+		//double motorOutput = leftLead.getOutputVoltage() / leftLead.getBusVoltage();
 		/* prepare line to print */
-		_sb.append("\tout:");
-		_sb.append(motorOutput);
-		_sb.append("\tspd:");
-		_sb.append(leftLead.getSpeed());
+		//_sb.append("\tout:");
+		//_sb.append(motorOutput);
+		//_sb.append("\tspd:");
+		//_sb.append(leftLead.getSpeed());
 
-		if (Robot.oi.driverController.getRawButton(1)) {
+		//if (Robot.oi.driverController.getRawButton(1)) {
 			/* Speed mode */
-			double targetSpeed = Robot.oi.driverController.getRawAxis(1)
-					* 1015; /* ____ RPM in either direction */
-			leftLead.changeControlMode(TalonControlMode.Speed);
-			leftLead.setProfile(1); // 0 = high gear, 1 = low gear
-			leftLead.set(targetSpeed); /* 1500 RPM in either direction */
+			//double targetSpeed =   413;//Robot.oi.driverController.getRawAxis(1)
+				//	* 1015; /* ____ RPM in either direction */
+			//leftLead.changeControlMode(TalonControlMode.Speed);
+			//leftLead.setProfile(1); // 0 = high gear, 1 = low gear
+			//leftLead.set(targetSpeed); /* 1500 RPM in either direction */
 			// _sb.append(_talon.getControlMode() );
 
 			// System.out.println(_talonFollower.getControlMode() );
 			/* append more signals to print when in speed mode. */
-			_sb.append("\terr:");
-			_sb.append(leftLead.getClosedLoopError());
-			_sb.append("\ttrg:");
-			_sb.append(targetSpeed);
-		}
+			//_sb.append("\terr:");
+			//_sb.append(leftLead.getClosedLoopError());
+			//_sb.append("\ttrg:");
+			//_sb.append(targetSpeed);
+		//}
 		/*
 		 * else if (Robot.oi.driverController.getRawButton(2)){
 		 * leftDriveLead.set(-.6); //System.out.println(_talon.getControlMode()
@@ -277,20 +284,83 @@ public class driveTrain extends Subsystem {
 		 * //System.out.println("constant voltage mode"); }
 		 */
 
-		else {
+		//else {
 			/* Percent voltage mode */
 			// System.out.println(_talon.getControlMode() );
 			// System.out.println(_talonFollower.getControlMode() );
-			leftLead.changeControlMode(TalonControlMode.PercentVbus);
-			leftLead.set(leftYstick);
+			//leftLead.changeControlMode(TalonControlMode.PercentVbus);
+			//leftLead.set(leftYstick);
 			// System.out.println("joystick vbus mode");
-		}
+		//}
 
-		if (++_loops >= 10) {
+		/*if (++_loops >= 10) {
 			_loops = 0;
 			System.out.println(_sb.toString());
 		}
 		_sb.setLength(0);
 	}
+	
+	public void combatMotorBias(double moveValue){
+		if(moveValue > 0.5) {
+			leftLead.configPeakOutputVoltage(+12.0, -12.0);
+			rightLead.configPeakOutputVoltage(+10.0, -10.0);
+		}
+		else if(moveValue < -0.5){
+			rightLead.configPeakOutputVoltage(+12.0, -12.0);
+			leftLead.configPeakOutputVoltage(+10.0, -10.0);
+		}
+		
+		
+	}  */
+	
+	  public void leftDrivetrainPIDTestMode() {
+	    	//SmartDashboard.putInt("motorspeed", leftLead.getEncVelocity());
+	    	////**********************
+	    	/* get gamepad axis */
+	    	double leftYstick = Robot.oi.driverController.getRawAxis(1);
+	    	double motorOutput = leftLead.getOutputVoltage() / leftLead.getBusVoltage();
+	    	/* prepare line to print */
+			_sb.append("\tout:");
+			_sb.append(motorOutput);
+	        _sb.append("\tspd:");
+	        _sb.append(leftLead.getSpeed() );
+	        
+	        if(Robot.oi.driverController.getRawButton(1)){
+	        	/* Speed mode */
+	        	double targetSpeed = -2500; /* 1500 RPM in either direction */
+	        	leftLead.changeControlMode(TalonControlMode.Speed);
+	        	leftLead.set(targetSpeed); /* 1500 RPM in either direction */
+	        	//_sb.append(_talon.getControlMode() );
+	        	
+	        	//System.out.println(_talonFollower.getControlMode() );
+	        	/* append more signals to print when in speed mode. */
+	            _sb.append("\terr:");
+	            _sb.append(leftLead.getClosedLoopError());
+	            _sb.append("\ttrg:");
+	            _sb.append(targetSpeed);
+	        } 
+	        else if (Robot.oi.driverController.getRawButton(2)){
+	        	leftLead.set(-.6);
+	        	//System.out.println(_talon.getControlMode() );
+	        	//System.out.println(_talonFollower.getControlMode() );
+	        	//System.out.println("constant voltage mode");
+	        }
+	        
+	        else {
+	        	/* Percent voltage mode */
+	        	//System.out.println(_talon.getControlMode() );
+	        	//System.out.println(_talonFollower.getControlMode() );
+	        	leftLead.changeControlMode(TalonControlMode.PercentVbus);
+	        	leftLead.set(leftYstick);
+	        	//System.out.println("joystick vbus mode");
+	        }
+
+	        if(++_loops >= 10) {
+	        	_loops = 0;
+	        	System.out.println(_sb.toString());
+	        }
+	        _sb.setLength(0);
+	    }
+	
 }
 
