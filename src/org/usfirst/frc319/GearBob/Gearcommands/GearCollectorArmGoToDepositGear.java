@@ -9,40 +9,38 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc319.GearBob.commands;
+package org.usfirst.frc319.GearBob.Gearcommands;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc319.GearBob.BobController;
 import org.usfirst.frc319.GearBob.Robot;
+import org.usfirst.frc319.GearBob.RobotMap;
 
 /**
  *
  */
-public class JoystickDrive extends Command {
+public class GearCollectorArmGoToDepositGear extends Command {
 
     
-    public JoystickDrive() {
+    public GearCollectorArmGoToDepositGear() {
 
   
-        requires(Robot.driveTrain);
+        requires(Robot.gearCollector);
 
             }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.gearCollector.gearCollectorGoToAngle(-15); // changed frtom -10 after mainely spirit
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double moveValue = Robot.oi.driverController.getLeftStickY();
-    	double rotateValue = Robot.oi.driverController.getRightStickX();
-    	Robot.driveTrain.joystickDrive(-moveValue,-rotateValue);
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	
+        return true;
     }
 
     // Called once after isFinished returns true

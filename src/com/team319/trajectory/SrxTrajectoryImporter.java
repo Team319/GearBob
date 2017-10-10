@@ -8,6 +8,12 @@ import java.nio.file.Paths;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/master
 public class SrxTrajectoryImporter {
 
 	public String path; 

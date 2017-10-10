@@ -8,7 +8,7 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-package org.usfirst.frc319.GearBob.commands;
+package org.usfirst.frc319.GearBob.Gearcommands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc319.GearBob.Robot;
@@ -18,46 +18,34 @@ import com.ctre.CANTalon.TalonControlMode;
 /**
  *
  */
-public class RollervatorClimb extends Command {
-	
-	private double climbSpeed = 0; 
-	
+public class GearCollectorOut extends Command {
 
-	public RollervatorClimb(double setPoint) {
-		
-		this.climbSpeed = setPoint;
-		//requires(Robot.rollervator);
-		requires(Robot.rollervator);
+	public GearCollectorOut() {
+
+		requires(Robot.gearCollector);
+
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		//Robot.rollervator.changeModeToVbus();
+		Robot.gearCollector.gearCollectorMotor.changeControlMode(TalonControlMode.PercentVbus);
+		Robot.oi.driverController.setRumble(0.0, 0.0);
+		Robot.oi.operatorController.setRumble(0.0, 0.0);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.rollervator.setClimber(climbSpeed);
+		double percentVbus = .3;
+		Robot.gearCollector.gearCollectorOut(percentVbus);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.rollervator.isExceedingCurrentThreshhold(50); // This
-																				// is
-																				// the
-																				// amount
-																				// of
-																				// current
-																				// that
-																				// stops
-																				// the
-																				// climb
-		// return false;
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		//Robot.rollervator.changeModeToSpeed();
 	}
 
 	// Called when another command which requires one or more of the same

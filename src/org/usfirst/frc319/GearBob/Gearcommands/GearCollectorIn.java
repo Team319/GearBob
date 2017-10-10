@@ -9,28 +9,34 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc319.GearBob.commands;
+package org.usfirst.frc319.GearBob.Gearcommands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc319.GearBob.Robot;
+
+import com.ctre.CANTalon.TalonControlMode;
 
 /**
  *
  */
-public class RightDrivetrainPIDTest extends Command {
-	
+public class GearCollectorIn extends Command {
+
     
-    public RightDrivetrainPIDTest() {
-    	requires(Robot.driveTrain);	
- 
-    }
+    public GearCollectorIn() {
+
+  
+        requires(Robot.gearCollector);
+
+            }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.gearCollector.gearCollectorMotor.changeControlMode(TalonControlMode.PercentVbus);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.rightDrivetrainPIDTestMode();
+    	double percentVbus = .6;
+    	Robot.gearCollector.gearCollectorIn(percentVbus);
     }
 
     // Make this return true when this Command no longer needs to run execute()

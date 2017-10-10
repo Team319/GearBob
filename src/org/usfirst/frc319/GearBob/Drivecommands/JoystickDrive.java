@@ -8,56 +8,43 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-package org.usfirst.frc319.GearBob.commands;
+package org.usfirst.frc319.GearBob.Drivecommands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc319.GearBob.Robot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.ctre.CANTalon.TalonControlMode;
+import org.usfirst.frc319.GearBob.BobController;
+import org.usfirst.frc319.GearBob.Robot;
 
 /**
  *
  */
-public class RollervatorClimb extends Command {
-	
-	private double climbSpeed = 0; 
-	
+public class JoystickDrive extends Command {
 
-	public RollervatorClimb(double setPoint) {
-		
-		this.climbSpeed = setPoint;
-		//requires(Robot.rollervator);
-		requires(Robot.rollervator);
+	public JoystickDrive() {
+
+		requires(Robot.driveTrain);
+
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		//Robot.rollervator.changeModeToVbus();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		Robot.rollervator.setClimber(climbSpeed);
+		double moveValue = Robot.oi.driverController.getLeftStickY();
+		double rotateValue = Robot.oi.driverController.getRightStickX();
+		Robot.driveTrain.joystickDrive(moveValue, -0.7*rotateValue);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return Robot.rollervator.isExceedingCurrentThreshhold(50); // This
-																				// is
-																				// the
-																				// amount
-																				// of
-																				// current
-																				// that
-																				// stops
-																				// the
-																				// climb
-		// return false;
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		//Robot.rollervator.changeModeToSpeed();
 	}
 
 	// Called when another command which requires one or more of the same

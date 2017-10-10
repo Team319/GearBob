@@ -14,6 +14,11 @@ package org.usfirst.frc319.GearBob.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 
+import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorArmDeploy;
+import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorArmGoToDepositGear;
+import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorHold;
+import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorIn;
+import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorInUntilCollected;
 //import org.usfirst.frc319.SteamworksBob319.commands.DriveTrain.ResetDrivetrainSpeedLimits;
 //import org.usfirst.frc319.SteamworksBob319.commands.DriveTrain.SetDrivetrainSpeedLimits;
 //import org.usfirst.frc319.SteamworksBob319.commands.Rollervator.RollervatorGo;

@@ -9,20 +9,23 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc319.GearBob.commands;
+package org.usfirst.frc319.GearBob.Gearcommands;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc319.GearBob.Robot;
 
 /**
  *
  */
-public class RightDrivetrainPIDTest extends Command {
-	
+public class GearCollectorInUntilCollected extends Command {
+
     
-    public RightDrivetrainPIDTest() {
-    	requires(Robot.driveTrain);	
- 
-    }
+    public GearCollectorInUntilCollected() {
+
+  
+        requires(Robot.gearCollector);
+
+            }
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -30,16 +33,19 @@ public class RightDrivetrainPIDTest extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.rightDrivetrainPIDTestMode();
+    	double speed = .6;
+
+    	Robot.gearCollector.gearCollectorIn(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.gearCollector.gearCollectorHasExceededCurrent(8.0);//possibly reduce
     }
 
     // Called once after isFinished returns true
     protected void end() {
+
     }
 
     // Called when another command which requires one or more of the same

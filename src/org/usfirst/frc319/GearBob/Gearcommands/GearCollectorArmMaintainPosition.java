@@ -9,33 +9,37 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc319.GearBob.commands;
+package org.usfirst.frc319.GearBob.Gearcommands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc319.GearBob.Robot;
 
 /**
  *
  */
-public class RightDrivetrainPIDTest extends Command {
-	
+public class GearCollectorArmMaintainPosition extends Command {
+
     
-    public RightDrivetrainPIDTest() {
-    	requires(Robot.driveTrain);	
- 
-    }
+    public GearCollectorArmMaintainPosition() {
+
+  
+        requires(Robot.gearCollector);
+
+            }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	double currentSetpoint =Robot.gearCollector.gearCollectorArm.getSetpoint();
+    	Robot.gearCollector.gearCollectorGoToAngle(currentSetpoint);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.rightDrivetrainPIDTestMode();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

@@ -9,20 +9,22 @@
 // it from being updated in the future.
 
 
-package org.usfirst.frc319.GearBob.commands;
+package org.usfirst.frc319.GearBob.Gearcommands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc319.GearBob.Robot;
 
 /**
  *
  */
-public class RightDrivetrainPIDTest extends Command {
-	
+public class GearCollectorMotionMagicTestMode extends Command {
+
     
-    public RightDrivetrainPIDTest() {
-    	requires(Robot.driveTrain);	
- 
-    }
+    public GearCollectorMotionMagicTestMode() {
+
+  
+        requires(Robot.gearCollector);
+
+            }
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -30,7 +32,7 @@ public class RightDrivetrainPIDTest extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.rightDrivetrainPIDTestMode();
+    	Robot.gearCollector.gearCollectorMotionMagicTestMode();
     }
 
     // Make this return true when this Command no longer needs to run execute()

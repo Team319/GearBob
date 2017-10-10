@@ -13,26 +13,25 @@ package org.usfirst.frc319.GearBob.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorArmGoToDepositGear;
-import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorStop;
-//import org.usfirst.frc319.SteamworksBob319.commands.BrakePadDeploy;
-//import org.usfirst.frc319.SteamworksBob319.commands.BrakePadRetract;
-//import org.usfirst.frc319.SteamworksBob319.commands.Rollervator.RollervatorGo;
-//import org.usfirst.frc319.SteamworksBob319.commands.Shooter.ShooterGoToSpeed;
+
+import org.usfirst.frc319.GearBob.Drivecommands.FollowTrajectory;
 import org.usfirst.frc319.GearBob.subsystems.*;
 
 /**
  *
  */
-public class RetractCollectorThenStopCollect extends CommandGroup {
+public class BlueCenterGearAuto extends CommandGroup {
 
-
+// this is for testing
   
-    public RetractCollectorThenStopCollect() {
+    public BlueCenterGearAuto() {
+    	addSequential(new FollowTrajectory("CenterGearAutoPt1"));
+    	//addSequential(new AutoDepositGear());
+    	//addSequential(new FuelCollectorDeploy());
+    	//addSequential(new FollowTrajectory("BlueCenterFromPegToShootPosition"));
+    	//addSequential(new HopperFlapDeploy());
+    	//addSequential(new SmartShoot());
 
-    	addSequential(new GearCollectorArmGoToDepositGear());
-    	addSequential(new GearCollectorStop());
-    	
    
         // Add Commands here:
         // e.g. addSequential(new Command1());

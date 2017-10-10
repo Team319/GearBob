@@ -52,8 +52,8 @@ public class Robot extends IterativeRobot {
        oi = new OI();
 
      
-        autonomousCommand = new AutonomousCommand();
-
+        //autonomousCommand = new AutonomousCommand();
+       autonomousCommand = new BlueCenterGearAuto();
      }
 
     /**
@@ -79,6 +79,7 @@ public class Robot extends IterativeRobot {
      */
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Right Drive Position", Robot.driveTrain.getRightDrivePosition());
     }
 
     public void teleopInit() {
@@ -115,14 +116,17 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("pdp1", Robot.driveTrain.getpdp1Current());
         SmartDashboard.putNumber("pdp2", Robot.driveTrain.getpdp2Current());
         SmartDashboard.putNumber("pdp3", Robot.driveTrain.getpdp3Current());
+        SmartDashboard.putNumber("pdp11", Robot.driveTrain.getpdp11Current());
         SmartDashboard.putNumber("pdp12", Robot.driveTrain.getpdp12Current());
         SmartDashboard.putNumber("pdp13", Robot.driveTrain.getpdp13Current());
         SmartDashboard.putNumber("pdp14", Robot.driveTrain.getpdp14Current());
-        SmartDashboard.putNumber("pdp15", Robot.driveTrain.getpdp15Current());
+       
         
         SmartDashboard.putNumber("leftStickY", Robot.oi.driverController.getLeftStickY());
         SmartDashboard.putNumber("rightStickX", Robot.oi.driverController.getRightStickX());
         SmartDashboard.putNumber("gearCollectorArmAngle", Robot.gearCollector.gearArmAngle());
+        
+        SmartDashboard.putNumber("Right Drive vel", Robot.driveTrain.getRightDriveVelocity());
         
         Robot.logger.logAll(); // initial attempt at creating log
     }
