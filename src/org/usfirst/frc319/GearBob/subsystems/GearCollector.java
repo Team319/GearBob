@@ -14,11 +14,11 @@ package org.usfirst.frc319.GearBob.subsystems;
 import org.usfirst.frc319.GearBob.InstrumentationMotionMagic;
 import org.usfirst.frc319.GearBob.Robot;
 import org.usfirst.frc319.GearBob.RobotMap;
-import org.usfirst.frc319.GearBob.Gearcommands.GearCollectStopRetract;
-import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorArmMaintainPosition;
-import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorMaintainSpeed;
-import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorMotionMagicTestMode;
-import org.usfirst.frc319.GearBob.Gearcommands.GearCollectorStop;
+import org.usfirst.frc319.GearBob.commands.Gear.GearCollectStopRetract;
+import org.usfirst.frc319.GearBob.commands.Gear.GearCollectorArmMaintainPosition;
+import org.usfirst.frc319.GearBob.commands.Gear.GearCollectorMaintainSpeed;
+import org.usfirst.frc319.GearBob.commands.Gear.GearCollectorMotionMagicTestMode;
+import org.usfirst.frc319.GearBob.commands.Gear.GearCollectorStop;
 import org.usfirst.frc319.GearBob.commands.*;
 
 import com.ctre.CANTalon;
