@@ -64,9 +64,9 @@ public class FollowTrajectory extends Command {
     	System.out.println("Importing " + trajectoryToFollow);
     	
     	
-    	this.leftFollower = new SrxMotionProfileFollower(RobotMap.drivetrainleftLead, Robot.driveTrain.DRIVE_PROFILE, this.traj.leftProfile);
-    	this.rightFollower = new SrxMotionProfileFollower(RobotMap.drivetrainrightLead, Robot.driveTrain.DRIVE_PROFILE, this.traj.rightProfile);
-    	
+    	//this.leftFollower = new SrxMotionProfileFollower(Robot.driveTrain.leftLead, Robot.driveTrain.DRIVE_PROFILE, this.traj.leftProfile);
+    	this.rightFollower = new SrxMotionProfileFollower(Robot.driveTrain.rightLead, Robot.driveTrain.DRIVE_PROFILE, this.traj.rightProfile);
+    	this.leftFollower = new SrxMotionProfileFollower(Robot.driveTrain.leftLead, 0, this.traj.leftProfile);
     		
     		
     	loops = 0;

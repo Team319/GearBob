@@ -29,7 +29,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class driveTrain extends Subsystem {
 
-<<<<<<< HEAD
+
     public final CANTalon leftLead = RobotMap.drivetrainleftLead;
     private final CANTalon left7 = RobotMap.drivetrainleft7;
     private final CANTalon left8 = RobotMap.drivetrainleft8;
@@ -106,97 +106,17 @@ public class driveTrain extends Subsystem {
     }
 
    
-    public void initDefaultCommand() {
+
     
-    	setDefaultCommand(new JoystickDrive());
-    	//setDefaultCommand(new RightDrivetrainPIDTest());
-    	//setDefaultCommand(new CombatMotorBias());
-    }
-    
-    public void joystickDrive(double moveValue, double rotateValue) {
-=======
-	public final CANTalon leftLead = RobotMap.drivetrainleftLead;
-	private final CANTalon left7 = RobotMap.drivetrainleft7;
-	private final CANTalon left8 = RobotMap.drivetrainleft8;
-	private final CANTalon left9 = RobotMap.drivetrainleft9;
-	public final CANTalon rightLead = RobotMap.drivetrainrightLead;
-	private final CANTalon right2 = RobotMap.drivetrainright2;
-	private final CANTalon right3 = RobotMap.drivetrainright3;
-	private final CANTalon right4 = RobotMap.drivetrainright4;
-
-	private final RobotDrive joystickDrive = RobotMap.driveTrainJoystickDrive;
-
-	private final PowerDistributionPanel pdp = RobotMap.pdp;
-
-	//public final int DRIVE_PROFILE = 0;
-
-	StringBuilder _sb = new StringBuilder();
-	int _loops = 0;
-
-	public driveTrain() {
-
-		leftLead.changeControlMode(TalonControlMode.PercentVbus);
-		left7.changeControlMode(TalonControlMode.Follower);
-		left7.set(leftLead.getDeviceID());
-		left8.changeControlMode(TalonControlMode.Follower);
-		left8.set(leftLead.getDeviceID());
-		left9.changeControlMode(TalonControlMode.Follower);
-		left9.set(leftLead.getDeviceID());
-		leftLead.reverseSensor(false);
-		leftLead.reverseOutput(false);
-		leftLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		leftLead.configEncoderCodesPerRev(1024);
-
-		rightLead.changeControlMode(TalonControlMode.PercentVbus);
-		right2.changeControlMode(TalonControlMode.Follower);
-		right2.set(rightLead.getDeviceID());
-		right3.changeControlMode(TalonControlMode.Follower);
-		right3.set(rightLead.getDeviceID());
-		right4.changeControlMode(TalonControlMode.Follower);
-		right4.set(rightLead.getDeviceID());
-		rightLead.reverseOutput(false);
-		rightLead.reverseSensor(false);
-		rightLead.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		rightLead.configEncoderCodesPerRev(1024);
-
-		leftLead.configNominalOutputVoltage(+12.0, -12.0);
-		leftLead.configPeakOutputVoltage(+12.0, -12.0);
-		leftLead.EnableCurrentLimit(false);
-		//leftLead.setCurrentLimit(1);
-
-		rightLead.configNominalOutputVoltage(+12.0, -12.0);
-		rightLead.configPeakOutputVoltage(+12.0, -12.0);
-		rightLead.EnableCurrentLimit(false);
-		//rightLead.setCurrentLimit(1);
-
-		rightLead.setVoltageRampRate(24);
-		leftLead.setVoltageRampRate(24);
-
-		double pDrive = 0.6;//.6
-		double fGain = 0.23;
-		double dDrive = 0.00;
-		double closedLoopRampRate = 0.00;
-
-		rightLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate,0);
-		leftLead.setPID(pDrive, 0, dDrive, fGain, 0, closedLoopRampRate, 0);
-
-		// rightLead.EnableCurrentLimit(true);//Enables current limit...
-		// rightLead.setCurrentLimit(50);//do not exceed this amount of
-		// current...need to figure out actual number/this was a guess (in amps)
-		// Joshua 6/3/17
-
-		// leftLead.EnableCurrentLimit(true);
-		// leftLead.setCurrentLimit(50);
-	}
-
+ 
 	public void initDefaultCommand() {
 
-		 setDefaultCommand(new LeftDrivetrainPIDTest());
-		//setDefaultCommand(new JoystickDrive());
+		// setDefaultCommand(new LeftDrivetrainPIDTest());
+		setDefaultCommand(new JoystickDrive());
 	}
 
 	public void joystickDrive(double moveValue, double rotateValue) {
->>>>>>> origin/master
+
 		joystickDrive.arcadeDrive(moveValue, rotateValue, true);
 	}
 	
@@ -387,14 +307,14 @@ public class driveTrain extends Subsystem {
 
 		if (Robot.oi.driverController.getRawButton(1)) {
 			/* Speed mode */
-<<<<<<< HEAD
+
 			double targetSpeed = Robot.oi.driverController.getRawAxis(1)//was 468
 										 * 413;
-=======
-			double targetSpeed = 413;// Robot.oi.driverController.getRawAxis(1)//was
+
+			//double targetSpeed = 413;// Robot.oi.driverController.getRawAxis(1)//was
 										// 468
 										// * 1015;
->>>>>>> origin/master
+
 			rightLead.changeControlMode(TalonControlMode.Speed);
 			 rightLead.setProfile(0); // 0 = high gear, 1 = low gear
 			rightLead.set(targetSpeed);
@@ -445,18 +365,17 @@ public class driveTrain extends Subsystem {
 
 		//if (Robot.oi.driverController.getRawButton(1)) {
 			/* Speed mode */
-<<<<<<< HEAD
+
 			//double targetSpeed =   413;//Robot.oi.driverController.getRawAxis(1)
 				//	* 1015; /* ____ RPM in either direction */
 			//leftLead.changeControlMode(TalonControlMode.Speed);
 			//leftLead.setProfile(1); // 0 = high gear, 1 = low gear
 			//leftLead.set(targetSpeed); /* 1500 RPM in either direction */
-=======
-			double targetSpeed = 413; /* ____ RPM in either direction */
-			leftLead.changeControlMode(TalonControlMode.Speed);
-			leftLead.setProfile(0); // 0 = high gear, 1 = low gear
-			leftLead.set(targetSpeed); /* 1500 RPM in either direction */
->>>>>>> origin/master
+
+			//double targetSpeed = 413; /* ____ RPM in either direction */
+			//leftLead.changeControlMode(TalonControlMode.Speed);
+			//leftLead.setProfile(0); // 0 = high gear, 1 = low gear
+		//	leftLead.set(targetSpeed); /* 1500 RPM in either direction */
 			// _sb.append(_talon.getControlMode() );
 
 			// System.out.println(_talonFollower.getControlMode() );

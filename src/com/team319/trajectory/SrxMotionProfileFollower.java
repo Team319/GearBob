@@ -112,9 +112,11 @@ public class SrxMotionProfileFollower {
 	 *            reference to Talon object to fetch motion profile status from.
 	 */
 	public SrxMotionProfileFollower(CANTalon talon, int PIDProfileSlot, SrxMotionProfile srxMotionProfile) {
+	
 		_talon = talon;
 		_mp = srxMotionProfile;
 		_profileSelect = PIDProfileSlot;
+		
 		/*
 		 * since our MP is 10ms per point, set the control frame rate and the
 		 * notifer to half that

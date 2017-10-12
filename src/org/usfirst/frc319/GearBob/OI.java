@@ -53,19 +53,18 @@ public class OI {
         aButton = new JoystickButton(bobController, 1);
         aButton.whileHeld(new Command1());
 	*/
-        
-<<<<<<< HEAD
+       
         driverController.rightTriggerButton.whenPressed(new AutoDepositGear());
         driverController.leftTriggerButton.whenPressed(new AutomatedCollectGearAndLift());
         driverController.yButton.whenPressed(new RetractCollectorThenStopCollect());
         driverController.leftBumper.whenPressed(new AutomatedRollervatorClimb());
         driverController.xButton.whenPressed(new DriveFiveFeetForward());
-=======
+
        // driverController.rightTriggerButton.whenPressed(new AutoDepositGear());
        // driverController.leftTriggerButton.whenPressed(new AutomatedCollectGearAndLift());
        // driverController.yButton.whenPressed(new RetractCollectorThenStopCollect());
       //  driverController.leftBumper.whenPressed(new AutomatedRollervatorClimb());
->>>>>>> origin/master
+
       //  driverController.bButton.whenPressed(new ClimberStop());
 
         SmartDashboard.putData("Autonomous Command", new AutonomousCommand());

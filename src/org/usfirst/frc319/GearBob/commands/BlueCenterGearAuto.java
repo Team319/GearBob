@@ -14,7 +14,7 @@ package org.usfirst.frc319.GearBob.commands;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 
-import org.usfirst.frc319.GearBob.Drivecommands.FollowTrajectory;
+import org.usfirst.frc319.GearBob.commands.FollowTrajectory;
 import org.usfirst.frc319.GearBob.subsystems.*;
 
 /**
