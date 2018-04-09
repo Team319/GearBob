@@ -12,7 +12,7 @@ package org.usfirst.frc319.GearBob.subsystems;
 
 import org.usfirst.frc319.GearBob.Robot;
 import org.usfirst.frc319.GearBob.RobotMap;
-import org.usfirst.frc319.GearBob.Drivecommands.JoystickDrive;
+import org.usfirst.frc319.GearBob.commands.Drivetrain.JoystickDrive;
 import org.usfirst.frc319.GearBob.commands.*;
 
 import com.ctre.CANTalon;
@@ -91,7 +91,7 @@ public class driveTrain extends Subsystem {
     	double closedLoopRampRate = 0.00;
     	
     	double pDrive = 0.1;
-        double fGain = 224; // Drivetrain /.036
+        double fGain = .224; // Drivetrain /.036
         double dDrive = 0.00;// .3 is good
          
     	
